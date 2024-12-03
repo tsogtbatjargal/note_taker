@@ -63,8 +63,9 @@ project-root/
 │   ├── config.py                 # Configuration constants
 ├── assets/                       # Static assets (images, logos, etc.)
 │   ├── logo.png
+├── styles/
+│   ├── main.css                  # Your main CSS file
 ├── scripts/                      # Shell scripts
-│   ├── pbpaste_extract_and_save.sh
 │   ├── web_extract_and_save.sh
 │   ├── yt_extract_and_save.sh
 ├── requirements.txt              # Python dependencies

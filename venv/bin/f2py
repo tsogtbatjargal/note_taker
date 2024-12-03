@@ -1,4 +1,4 @@
-#!/home/tsogounix/projects/note_taker/venv/bin/python3
+#!/home/tsogounix/projects/note_taker/note_taker/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
