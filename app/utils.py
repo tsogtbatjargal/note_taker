@@ -2,6 +2,7 @@ import os
 import subprocess
 import traceback
 import streamlit as st
+import base64
 
 # Set paths dynamically
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -34,3 +35,9 @@ def execute_script(script_name, args, input_data=None):
         raise RuntimeError(f"Script execution failed:\n{stderr}")
     
     return stdout
+
+
+# Function to encode the image as a base64 string for embedding
+def get_base64_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()

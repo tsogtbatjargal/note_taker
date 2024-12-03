@@ -113,6 +113,6 @@ This project is licensed under the TB
 ## Contact
 
 For issues, questions, or suggestions:
-- **Email**: your.email@example.com
+- **Email**: tsoglog.uli@gmail.com
 - **GitHub Issues**: [Open an Issue](https://github.com/tsogtbatjargal/note_taker/issues)
 

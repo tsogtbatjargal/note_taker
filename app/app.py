@@ -2,15 +2,46 @@ import sys
 import os
 import traceback
 import streamlit as st
+from PIL import Image
+
 
 # Add the parent directory of `app/` to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from utils import execute_script, VAULT_PATH
+from utils import execute_script, VAULT_PATH, get_base64_image
 
-# Set page configuration
+# Set page configuration - MUST BE FIRST!
 st.set_page_config(page_title="Note Taker", layout="centered")
-st.title("Note Taker")
+
+
+# Load your logo
+logo_path = "assets/logo.png"  # Update with your logo path
+logo_base64 = get_base64_image(logo_path)
+
+# Add custom CSS to style the logo
+st.markdown(
+    f"""
+    <style>
+        .logo-container {{
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            z-index: 1000;
+        }}
+        .logo-container img {{
+            max-width: 100px;  /* Adjust the logo size here */
+            height: auto;
+        }}
+    </style>
+    <div class="logo-container">
+        <img src="data:image/png;base64,{logo_base64}" alt="Logo">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+st.title("Note Taker App")
 
 # Tabs for YouTube and Web Page Note Takers
 tab1, tab2 = st.tabs(["YouTube Note Taker", "Web Page Note Taker"])
