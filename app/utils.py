@@ -2,14 +2,13 @@ import os
 import subprocess
 import traceback
 import streamlit as st
-import base64
+
 
 # Set paths dynamically
-BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SCRIPTS_DIR = os.path.join(BASE_DIR, "scripts")
 VAULT_PATH = "/mnt/c/someTestTB/ObsidianVault/ObsidianVault"
 
-# Utility to execute shell scripts
 def execute_script(script_name, args, input_data=None):
     script_path = os.path.join(SCRIPTS_DIR, script_name)
     if not os.path.exists(script_path):
@@ -36,8 +35,37 @@ def execute_script(script_name, args, input_data=None):
     
     return stdout
 
+def clean_input_data(input_text):
+    """
+    Cleans the raw input text by removing unwanted patterns, empty lines,
+    and leading/trailing whitespace.
 
-# Function to encode the image as a base64 string for embedding
-def get_base64_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode()
+    Args:
+        input_text (str): Raw input text.
+
+    Returns:
+        str: Cleaned input text.
+    """
+    unwanted_patterns = [
+        "Please figure out the best possible answer",
+        "Important: Reward for correct answer",
+    ]
+
+    lines = input_text.splitlines()
+    cleaned_lines = []
+
+    for line in lines:
+        if any(pattern in line for pattern in unwanted_patterns):
+            continue
+        cleaned_line = line.strip()
+        if cleaned_line:
+            cleaned_lines.append(cleaned_line)
+
+    cleaned_text = "\n".join(cleaned_lines)
+    return cleaned_text
+
+
+def load_css(file_name):
+    with open(file_name) as f:
+        css_content = f.read()
+        st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)

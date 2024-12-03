@@ -1,0 +1,21 @@
+/* Logo Styles */
+.logo-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+.logo-container img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Custom Title Styles */
+.custom-title {
+    font-size: 18px;  /* Adjust font size as needed */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Additional Styles */
+/* ... */

@@ -50,19 +50,27 @@ A **Streamlit-based application** for extracting, summarizing, and managing note
 
 ```plaintext
 project-root/
-├── app/                      # App-related code
-│   ├── app.py                # Main Streamlit app
-│   ├── utils.py              # Helper functions
-│   ├── __init__.py           # Marks `app` as a Python package
-├── scripts/                  # Shell scripts
+├── app/
+│   ├── __init__.py               # Marks `app/` as a package
+│   ├── app.py                    # Main entry point for the Streamlit app
+│   ├── components/               # Custom reusable components
+│   │   ├── __init__.py
+│   │   ├── logo.py               # Code for displaying the logo
+│   │   ├── tabs/                 # Tab-specific components
+│   │   │   ├── youtube_tab.py    # YouTube Note-Taker tab code
+│   │   │   ├── web_page_tab.py   # Web Page Note-Taker tab code
+│   ├── utils.py                  # Shared utility functions
+│   ├── config.py                 # Configuration constants
+├── assets/                       # Static assets (images, logos, etc.)
+│   ├── logo.png
+├── scripts/                      # Shell scripts
 │   ├── pbpaste_extract_and_save.sh
 │   ├── web_extract_and_save.sh
 │   ├── yt_extract_and_save.sh
-├── assets/                   # Static assets (images, logos)
-├── requirements.txt          # Python dependencies
-├── Dockerfile                # Docker configuration
-├── .dockerignore             # Docker exclusions
-├── README.md                 # Project documentation
+├── requirements.txt              # Python dependencies
+├── Dockerfile                    # Docker configuration
+├── README.md                     # Documentation
+
 ```
 
 ---
