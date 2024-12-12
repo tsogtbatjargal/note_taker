@@ -6,7 +6,6 @@
 set -e # Exit immediately if a command exits with non-zero status.
 set -u # Treat unset variables and parameters other than the special parameters "@" and "* as errors.
 
-
 # Configuration
 VAULT_PATH="/mnt/c/someTestTB/ObsidianVault/ObsidianVault"
 
@@ -21,22 +20,22 @@ PATTERN=$3
 # Create vault directory if it doesn't exist
 mkdir -p "$VAULT_PATH/$VAULT_PATH_SUB"
 
-# Extract transcript
-TRANSCRIPT=$(yt --transcript "$YOUTUBE_URL")
+# Extract transcript using Fabric AI
+TRANSCRIPT=$(fabric -y "$YOUTUBE_URL" --transcript)
 if [ $? -ne 0 ]; then
   echo "Failed to extract transcript from YouTube URL: $YOUTUBE_URL"
   exit 1
 fi
 
-# Extract duration
-DURATION=$(yt --duration "$YOUTUBE_URL")
+# Extract duration using Fabric AI
+DURATION=$(fabric -y "$YOUTUBE_URL" --duration)
 if [ $? -ne 0 ]; then
   echo "Failed to extract duration from YouTube URL: $YOUTUBE_URL"
   exit 1
 fi
 
-# Extract metadata
-METADATA=$(yt --metadata "$YOUTUBE_URL")
+# Extract metadata using Fabric AI
+METADATA=$(fabric -y "$YOUTUBE_URL" --metadata)
 if [ $? -ne 0 ]; then
   echo "Failed to extract metadata from YouTube URL: $YOUTUBE_URL"
   exit 1
@@ -53,12 +52,10 @@ fi
 #TITLE_TAG=$(echo "$TITLE" | sed 's/ /_/g')
 TITLE_TAG=$(echo "$TITLE" | sed 's/ /_/g; s/\//-/g; s/\\/-/g') || { echo "Failed to sanitize title"; exit 1; }
 
-
 # Debug: Print the extracted information to verify
 echo "Title for $YOUTUBE_URL: $TITLE"
 echo "Duration for $YOUTUBE_URL: $DURATION"
 echo "---------------------------------------------------"
-
 
 # Summarize using Fabric with the llama2:latest model
 MODEL="llama2:latest"
@@ -67,7 +64,6 @@ if [ $? -ne 0 ]; then
   echo "Failed to summarize transcript."
   exit 1
 fi
-
 
 # Debug: Print the summary to verify
 echo "Summary for $YOUTUBE_URL:"

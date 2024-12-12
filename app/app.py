@@ -54,7 +54,7 @@ with tab1:
             with st.spinner("Processing..."):
                 try:
                     # Path to your script
-                    script_path = "/home/tsogounix/projects/note_taker/yt_extract_and_save.sh"
+                    script_path = "/app/scripts/yt_extract_and_save.sh"
 
                     # Ensure the script is executable
                     if not os.access(script_path, os.X_OK):
@@ -177,7 +177,7 @@ with tab2:
             with st.spinner("Processing..."):
                 try:
                     # Path to your script
-                    script_path = "/home/tsogounix/projects/note_taker/web_extract_and_save.sh"
+                    script_path = "/app/scripts/web_extract_and_save.sh"
 
                     # Ensure the script is executable
                     if not os.access(script_path, os.X_OK):
